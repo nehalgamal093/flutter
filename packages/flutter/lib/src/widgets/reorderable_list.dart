@@ -168,6 +168,7 @@ class ReorderableList extends StatefulWidget {
   /// {@endtemplate}
   final ReorderCallback onReorder;
 
+<<<<<<< HEAD
   /// {@template flutter.widgets.reorderable_list.onReorderStart}
   /// A callback that is called when an item drag has started.
   ///
@@ -196,6 +197,8 @@ class ReorderableList extends StatefulWidget {
   /// {@endtemplate}
   final void Function(int index)? onReorderEnd;
 
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   /// {@template flutter.widgets.reorderable_list.proxyDecorator}
   /// A callback that allows the app to add an animated decoration around
   /// an item when it is being dragged.
@@ -226,6 +229,7 @@ class ReorderableList extends StatefulWidget {
 
   /// {@macro flutter.widgets.scroll_view.shrinkWrap}
   final bool shrinkWrap;
+<<<<<<< HEAD
 
   /// {@macro flutter.widgets.scroll_view.anchor}
   final double anchor;
@@ -254,6 +258,30 @@ class ReorderableList extends StatefulWidget {
 
   /// {@macro flutter.widgets.list_view.prototypeItem}
   final Widget? prototypeItem;
+=======
+
+  /// {@macro flutter.widgets.scroll_view.anchor}
+  final double anchor;
+
+  /// {@macro flutter.rendering.RenderViewportBase.cacheExtent}
+  final double? cacheExtent;
+
+  /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+  final DragStartBehavior dragStartBehavior;
+
+  /// {@macro flutter.widgets.scroll_view.keyboardDismissBehavior}
+  ///
+  /// The default is [ScrollViewKeyboardDismissBehavior.manual]
+  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
+
+  /// {@macro flutter.widgets.scrollable.restorationId}
+  final String? restorationId;
+
+  /// {@macro flutter.material.Material.clipBehavior}
+  ///
+  /// Defaults to [Clip.hardEdge].
+  final Clip clipBehavior;
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   /// The state from the closest instance of this class that encloses the given
   /// context.
@@ -448,21 +476,27 @@ class SliverReorderableList extends StatefulWidget {
   /// {@macro flutter.widgets.reorderable_list.itemBuilder}
   final IndexedWidgetBuilder itemBuilder;
 
+<<<<<<< HEAD
   /// {@macro flutter.widgets.SliverChildBuilderDelegate.findChildIndexCallback}
   final ChildIndexGetter? findChildIndexCallback;
 
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   /// {@macro flutter.widgets.reorderable_list.itemCount}
   final int itemCount;
 
   /// {@macro flutter.widgets.reorderable_list.onReorder}
   final ReorderCallback onReorder;
 
+<<<<<<< HEAD
   /// {@macro flutter.widgets.reorderable_list.onReorderStart}
   final void Function(int)? onReorderStart;
 
   /// {@macro flutter.widgets.reorderable_list.onReorderEnd}
   final void Function(int)? onReorderEnd;
 
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   /// {@macro flutter.widgets.reorderable_list.proxyDecorator}
   final ReorderItemProxyDecorator? proxyDecorator;
 

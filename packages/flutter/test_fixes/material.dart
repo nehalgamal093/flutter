@@ -7,9 +7,12 @@ import 'package:flutter/material.dart';
 void main() {
   // Generic reference variables.
   BuildContext context;
+<<<<<<< HEAD
   RenderObjectWidget renderObjectWidget;
   RenderObject renderObject;
   Object object;
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/26259
   Scaffold scaffold = Scaffold(resizeToAvoidBottomPadding: true);
@@ -132,67 +135,98 @@ void main() {
   // Changes made in https://github.com/flutter/flutter/pull/68736
   MediaQuery.of(context, nullOk: true);
   MediaQuery.of(context, nullOk: false);
+<<<<<<< HEAD
   MediaQuery.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/70726
   Navigator.of(context, nullOk: true);
   Navigator.of(context, nullOk: false);
+<<<<<<< HEAD
   Navigator.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/68908
   ScaffoldMessenger.of(context, nullOk: true);
   ScaffoldMessenger.of(context, nullOk: false);
+<<<<<<< HEAD
   ScaffoldMessenger.of(error: '');
   Scaffold.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   Scaffold.of(context, nullOk: true);
   Scaffold.of(context, nullOk: false);
 
   // Changes made in https://github.com/flutter/flutter/pull/68910
   Router.of(context, nullOk: true);
   Router.of(context, nullOk: false);
+<<<<<<< HEAD
   Router.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/68911
   Localizations.localeOf(context, nullOk: true);
   Localizations.localeOf(context, nullOk: false);
+<<<<<<< HEAD
   Localizations.localeOf(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/68917
   FocusTraversalOrder.of(context, nullOk: true);
   FocusTraversalOrder.of(context, nullOk: false);
+<<<<<<< HEAD
   FocusTraversalOrder.of(error: '');
   FocusTraversalGroup.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   FocusTraversalGroup.of(context, nullOk: true);
   FocusTraversalGroup.of(context, nullOk: false);
   Focus.of(context, nullOk: true);
   Focus.of(context, nullOk: false);
+<<<<<<< HEAD
   Focus.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
   // Changes made in https://github.com/flutter/flutter/pull/68921
   Shortcuts.of(context, nullOk: true);
   Shortcuts.of(context, nullOk: false);
+<<<<<<< HEAD
   Shortcuts.of(error: '');
   Actions.find(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   Actions.find(context, nullOk: true);
   Actions.find(context, nullOk: false);
   Actions.handler(context, nullOk: true);
   Actions.handler(context, nullOk: false);
+<<<<<<< HEAD
   Actions.handler(error: '');
   Actions.invoke(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   Actions.invoke(context, nullOk: true);
   Actions.invoke(context, nullOk: false);
 
   // Changes made in https://github.com/flutter/flutter/pull/68925
   AnimatedList.of(context, nullOk: true);
   AnimatedList.of(context, nullOk: false);
+<<<<<<< HEAD
   AnimatedList.of(error: '');
   SliverAnimatedList.of(error: '');
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   SliverAnimatedList.of(context, nullOk: true);
   SliverAnimatedList.of(context, nullOk: false);
 
   // Changes made in https://github.com/flutter/flutter/pull/68905
   MaterialBasedCupertinoThemeData.resolveFrom(context, nullOk: true);
   MaterialBasedCupertinoThemeData.resolveFrom(context, nullOk: false);
+<<<<<<< HEAD
   MaterialBasedCupertinoThemeData.resolveFrom(error: '');
 
   // Changes made in https://github.com/flutter/flutter/pull/72043
@@ -554,4 +588,6 @@ void main() {
 
   // Change made in https://github.com/flutter/flutter/pull/100381
   TextSelectionOverlay.fadeDuration;
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 }

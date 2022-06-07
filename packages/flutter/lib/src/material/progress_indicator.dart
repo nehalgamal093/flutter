@@ -267,7 +267,10 @@ class LinearProgressIndicator extends ProgressIndicator {
     Key? key,
     double? value,
     Color? backgroundColor,
+<<<<<<< HEAD
     Color? color,
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     Animation<Color?>? valueColor,
     this.minHeight,
     String? semanticsLabel,

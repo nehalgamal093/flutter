@@ -81,10 +81,17 @@ class PlatformViewPage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+<<<<<<< HEAD
           const Expanded(
             child: SizedBox(
               width: 300,
               child: UiKitView(viewType: 'platform_view'),
+=======
+          Expanded(
+            child: Container(
+              child: const UiKitView(viewType: 'platform_view'),
+              width: 300,
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
             ),
           ),
           ElevatedButton(

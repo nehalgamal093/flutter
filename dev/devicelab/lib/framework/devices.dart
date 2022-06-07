@@ -1037,6 +1037,7 @@ class IosDevice extends Device {
   @override
   Future<void> reboot() {
     return Process.run('idevicediagnostics', <String>['restart', '-u', deviceId]);
+<<<<<<< HEAD:dev/devicelab/lib/framework/devices.dart
   }
 }
 
@@ -1114,6 +1115,8 @@ class WindowsDevice extends Device {
   @override
   Future<bool> isAwake() async {
     return true;
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe:dev/devicelab/lib/framework/adb.dart
   }
 
   @override

@@ -41,7 +41,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+<<<<<<< HEAD
   intl: any # Pick up the pinned version from flutter_localizations
+=======
+  intl: 0.17.0
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 ''';
 
   @override

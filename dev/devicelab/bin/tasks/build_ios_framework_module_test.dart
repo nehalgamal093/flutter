@@ -66,7 +66,11 @@ Future<void> _testBuildIosFramework(Directory projectDir, { bool isModule = fals
   String content = pubspec.readAsStringSync();
   content = content.replaceFirst(
     '\ndependencies:\n',
+<<<<<<< HEAD
     '\ndependencies:\n  package_info: 2.0.2\n  connectivity: 3.0.6\n',
+=======
+    '\ndependencies:\n  device_info: 0.4.1\n  package_info: 0.4.0+9\n  connectivity: 3.0.3\n',
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   );
   pubspec.writeAsStringSync(content, flush: true);
   await inDirectory(projectDir, () async {
@@ -277,7 +281,11 @@ Future<void> _testBuildIosFramework(Directory projectDir, { bool isModule = fals
       outputPath,
       mode,
       'Reachability.xcframework',
+<<<<<<< HEAD
       'ios-arm64_armv7',
+=======
+      localXcodeArmDirectoryName,
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       'Reachability.framework',
       'Reachability',
     );
@@ -419,6 +427,18 @@ Future<void> _testBuildIosFramework(Directory projectDir, { bool isModule = fals
       cocoapodsOutputPath,
       mode,
       'package_info.xcframework',
+    ));
+
+    checkDirectoryExists(path.join(
+      cocoapodsOutputPath,
+      mode,
+      'connectivity.xcframework',
+    ));
+
+    checkDirectoryExists(path.join(
+      cocoapodsOutputPath,
+      mode,
+      'Reachability.xcframework',
     ));
 
     checkDirectoryExists(path.join(

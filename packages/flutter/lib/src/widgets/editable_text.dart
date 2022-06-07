@@ -59,9 +59,22 @@ const Duration _kCursorBlinkWaitForStart = Duration(milliseconds: 150);
 // is shown in an obscured text field.
 const int _kObscureShowLatestCharCursorTicks = 3;
 
+<<<<<<< HEAD
 // The minimum width of an iPad screen. The smallest iPad is currently the
 // iPad Mini 6th Gen according to ios-resolution.com.
 const double _kIPadWidth = 1488.0;
+=======
+/// A map used to disable scrolling shortcuts in text fields.
+///
+/// This is a temporary fix for: https://github.com/flutter/flutter/issues/74191
+final Map<LogicalKeySet, Intent> scrollShortcutOverrides = <LogicalKeySet, Intent>{
+  LogicalKeySet(LogicalKeyboardKey.space): DoNothingAndStopPropagationIntent(),
+  LogicalKeySet(LogicalKeyboardKey.arrowUp): DoNothingAndStopPropagationIntent(),
+  LogicalKeySet(LogicalKeyboardKey.arrowDown): DoNothingAndStopPropagationIntent(),
+  LogicalKeySet(LogicalKeyboardKey.arrowLeft): DoNothingAndStopPropagationIntent(),
+  LogicalKeySet(LogicalKeyboardKey.arrowRight): DoNothingAndStopPropagationIntent(),
+};
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 
 /// A controller for an editable text field.
 ///

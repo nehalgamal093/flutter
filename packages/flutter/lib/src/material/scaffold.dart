@@ -205,6 +205,7 @@ class ScaffoldMessengerState extends State<ScaffoldMessenger> with TickerProvide
 
   void _register(ScaffoldState scaffold) {
     _scaffolds.add(scaffold);
+<<<<<<< HEAD
 
     if (_isRoot(scaffold)) {
       if (_snackBars.isNotEmpty) {
@@ -214,6 +215,10 @@ class ScaffoldMessengerState extends State<ScaffoldMessenger> with TickerProvide
       if (_materialBanners.isNotEmpty) {
         scaffold._updateMaterialBanner();
       }
+=======
+    if (_snackBars.isNotEmpty && _isRoot(scaffold)) {
+      scaffold._updateSnackBar();
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     }
   }
 

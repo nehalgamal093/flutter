@@ -45,7 +45,11 @@ void main() {
   });
 
   testWithoutContext('ArtifactUpdater can download a zip archive and delete stale files', () async {
+<<<<<<< HEAD
     final FakeOperatingSystemUtils operatingSystemUtils = FakeOperatingSystemUtils();
+=======
+    final MockOperatingSystemUtils operatingSystemUtils = MockOperatingSystemUtils();
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     final MemoryFileSystem fileSystem = MemoryFileSystem.test();
     final BufferLogger logger = BufferLogger.test();
     final ArtifactUpdater artifactUpdater = ArtifactUpdater(
@@ -53,10 +57,16 @@ void main() {
       logger: logger,
       operatingSystemUtils: operatingSystemUtils,
       platform: testPlatform,
+<<<<<<< HEAD
       httpClient: FakeHttpClient.any(),
       tempStorage: fileSystem.currentDirectory.childDirectory('temp')
         ..createSync(),
       allowedBaseUrls: <String>['http://test.zip'],
+=======
+      httpClient: MockHttpClient(),
+      tempStorage: fileSystem.currentDirectory.childDirectory('temp')
+        ..createSync(),
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     );
     // Unrelated file from another cache.
     fileSystem.file('out/bar').createSync(recursive: true);
@@ -65,7 +75,11 @@ void main() {
 
     await artifactUpdater.downloadZipArchive(
       'test message',
+<<<<<<< HEAD
       Uri.parse('http://test.zip'),
+=======
+      Uri.parse('http:///test.zip'),
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       fileSystem.currentDirectory.childDirectory('out'),
     );
     expect(logger.statusText, contains('test message'));

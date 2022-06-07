@@ -289,6 +289,7 @@ class CreateCommand extends CreateBase {
       linux: featureFlags.isLinuxEnabled && platforms.contains('linux'),
       macos: featureFlags.isMacOSEnabled && platforms.contains('macos'),
       windows: featureFlags.isWindowsEnabled && platforms.contains('windows'),
+<<<<<<< HEAD
       windowsUwp: featureFlags.isWindowsUwpEnabled && platforms.contains('winuwp'),
       // Enable null safety everywhere.
       dartSdkVersionBounds: '">=$dartSdk <3.0.0"',
@@ -296,6 +297,10 @@ class CreateCommand extends CreateBase {
       agpVersion: gradle.templateAndroidGradlePluginVersion,
       kotlinVersion: gradle.templateKotlinGradlePluginVersion,
       gradleVersion: gradle.templateDefaultGradleVersion,
+=======
+      // Enable null-safety for sample code, which is - unlike our regular templates - already migrated.
+      dartSdkVersionBounds: sampleCode != null ? '">=2.12.0-0 <3.0.0"' : '">=2.7.0 <3.0.0"'
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     );
 
     final String relativeDirPath = globals.fs.path.relative(projectDirPath);

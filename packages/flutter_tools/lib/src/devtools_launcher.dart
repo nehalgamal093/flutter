@@ -84,9 +84,35 @@ class DevtoolsServerLauncher extends DevtoolsLauncher {
         }
       );
 
+<<<<<<< HEAD
       devToolsUrl = await completer.future;
     } on Exception catch (e, st) {
       _logger.printError('Failed to launch DevTools: $e', stackTrace: st);
+=======
+    final Status status = _logger.startProgress(
+      'Activating Dart DevTools...',
+    );
+    try {
+      final io.ProcessResult _devToolsActivateProcess = await _processManager
+          .run(<String>[
+        _pubExecutable,
+        'global',
+        'activate',
+        'devtools'
+      ]);
+      if (_devToolsActivateProcess.exitCode != 0) {
+        _logger.printError('Error running `pub global activate '
+            'devtools`:\n${_devToolsActivateProcess.stderr}');
+        return false;
+      }
+      _persistentToolState.lastDevToolsActivationTime = DateTime.now();
+      return true;
+    } on Exception catch (e, _) {
+      _logger.printError('Error running `pub global activate devtools`: $e');
+      return false;
+    } finally {
+      status.stop();
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     }
   }
 

@@ -97,7 +97,11 @@ void main() {
     const ProcessManager processManager = LocalProcessManager();
 
     Future<ProcessResult> runScript(
+<<<<<<< HEAD
         [Map<String, String>? environment, List<String> otherArgs = const <String>[]]) async {
+=======
+        [Map<String, String> environment, List<String> otherArgs = const <String>[]]) async {
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       final String dart = path.absolute(
           path.join('..', '..', 'bin', 'cache', 'dart-sdk', 'bin', 'dart'));
       final ProcessResult scriptProcess = processManager.runSync(<String>[
@@ -109,6 +113,7 @@ void main() {
     }
 
     test('subshards tests correctly', () async {
+<<<<<<< HEAD
       // When updating this test, try to pick shard numbers that ensure we're checking
       // that unequal test distributions don't miss tests.
       ProcessResult result = await runScript(
@@ -122,13 +127,34 @@ void main() {
       );
       expectExitCode(result, 0);
       expect(result.stdout, contains('Selecting subshard 3 of 3 (range 7-8 of 8)'));
+=======
+      ProcessResult result = await runScript(
+        <String, String>{'SHARD': 'smoke_tests', 'SUBSHARD': '1_3'},
+      );
+      expect(result.exitCode, 0);
+      // There are currently 6 smoke tests. This shard should contain test 1 and 2.
+      expect(result.stdout, contains('Selecting subshard 1 of 3 (range 1-2 of 6)'));
+
+      result = await runScript(
+        <String, String>{'SHARD': 'smoke_tests', 'SUBSHARD': '5_6'},
+      );
+      expect(result.exitCode, 0);
+      // This shard should contain only test 5.
+      expect(result.stdout, contains('Selecting subshard 5 of 6 (range 5-5 of 6)'));
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     });
 
     test('exits with code 1 when SUBSHARD index greater than total', () async {
       final ProcessResult result = await runScript(
+<<<<<<< HEAD
         <String, String>{'SHARD': 'test_harness_tests', 'SUBSHARD': '100_99'},
       );
       expectExitCode(result, 1);
+=======
+        <String, String>{'SHARD': 'smoke_tests', 'SUBSHARD': '100_99'},
+      );
+      expect(result.exitCode, 1);
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       expect(result.stdout, contains('Invalid subshard name'));
     });
   });

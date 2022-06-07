@@ -2346,7 +2346,11 @@ void main() {
                                 Navigator.pop(context, null);
                               },
                               child: const Text('Pop route'),
+<<<<<<< HEAD
                             ),
+=======
+                            )
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
                           ],
                         ),
                       );
@@ -2358,7 +2362,11 @@ void main() {
             ),
           ),
         ),
+<<<<<<< HEAD
       ),
+=======
+      )
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     ));
 
     expect(find.text(snackBarContent), findsNothing);

@@ -33,6 +33,9 @@ end
 def flutter_additional_ios_build_settings(target)
   return unless target.platform_name == :ios
 
+  # Return if it's not a Flutter plugin (transitive dependency).
+  return unless target.dependencies.any? { |dependency| dependency.name == 'Flutter' }
+
   # [target.deployment_target] is a [String] formatted as "8.0".
   inherit_deployment_target = target.deployment_target[/\d+/].to_i < 9
 

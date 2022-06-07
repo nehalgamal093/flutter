@@ -184,7 +184,11 @@ abstract class RunCommandBase extends FlutterCommand with DeviceBasedDevelopment
 
   /// Create a debugging options instance for the current `run` or `drive` invocation.
   Future<DebuggingOptions> createDebuggingOptions(bool webMode) async {
+<<<<<<< HEAD
     final BuildInfo buildInfo = await getBuildInfo();
+=======
+    final BuildInfo buildInfo = await getBuildInfo(updateWebDefines: webMode);
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     final int browserDebugPort = featureFlags.isWebEnabled && argResults.wasParsed('web-browser-debug-port')
       ? int.parse(stringArg('web-browser-debug-port'))
       : null;
@@ -438,7 +442,7 @@ class RunCommand extends RunCommandBase {
       }
     }
 
-    final BuildInfo buildInfo = await getBuildInfo();
+    final BuildInfo buildInfo = await getBuildInfo(updateWebDefines: webMode);
     final String modeName = buildInfo.modeName;
     return CustomDimensions(
       commandRunIsEmulator: isEmulator,
@@ -493,10 +497,13 @@ class RunCommand extends RunCommandBase {
         '--${FlutterOptions.kDeviceUser} is only supported for Android. At least one Android device is required.'
       );
     }
+<<<<<<< HEAD
 
     if (devices.any((Device device) => device is AndroidDevice)) {
       _deviceDeprecationBehavior = DeprecationBehavior.exit;
     }
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     // Only support "web mode" with a single web device due to resident runner
     // refactoring required otherwise.
     webMode = featureFlags.isWebEnabled &&
@@ -524,7 +531,10 @@ class RunCommand extends RunCommandBase {
         dillOutputPath: stringArg('output-dill'),
         stayResident: stayResident,
         ipv6: ipv6,
+<<<<<<< HEAD
         multidexEnabled: boolArg('multidex'),
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       );
     } else if (webMode) {
       return webRunnerFactory.createWebRunner(
@@ -535,10 +545,13 @@ class RunCommand extends RunCommandBase {
         debuggingOptions: await createDebuggingOptions(webMode),
         stayResident: stayResident,
         urlTunneller: null,
+<<<<<<< HEAD
         fileSystem: globals.fs,
         usage: globals.flutterUsage,
         logger: globals.logger,
         systemClock: globals.systemClock,
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       );
     }
     return ColdRunner(
@@ -552,7 +565,10 @@ class RunCommand extends RunCommandBase {
           : globals.fs.file(applicationBinaryPath),
       ipv6: ipv6,
       stayResident: stayResident,
+<<<<<<< HEAD
       multidexEnabled: boolArg('multidex'),
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     );
   }
 
@@ -560,7 +576,7 @@ class RunCommand extends RunCommandBase {
   Future<FlutterCommandResult> runCommand() async {
     // Enable hot mode by default if `--no-hot` was not passed and we are in
     // debug mode.
-    final BuildInfo buildInfo = await getBuildInfo();
+    final BuildInfo buildInfo = await getBuildInfo(updateWebDefines: webMode);
     final bool hotMode = shouldUseHotMode(buildInfo);
     final String applicationBinaryPath = stringArg('use-application-binary');
 
@@ -688,6 +704,7 @@ class RunCommand extends RunCommandBase {
         }
       }
     ));
+<<<<<<< HEAD
     try {
       final int result = await runner.run(
         appStartedCompleter: appStartedTimeRecorder,
@@ -700,6 +717,19 @@ class RunCommand extends RunCommandBase {
       }
     } on RPCError catch (error) {
       if (error.code == RPCErrorCodes.kServiceDisappeared) {
+=======
+
+    try {
+      final int result = await runner.run(
+        appStartedCompleter: appStartedTimeRecorder,
+        route: route,
+      );
+      if (result != 0) {
+        throwToolExit(null, exitCode: result);
+      }
+    } on RPCError catch (err) {
+      if (err.code == RPCErrorCodes.kServiceDisappeared) {
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
         throwToolExit('Lost connection to device.');
       }
       rethrow;

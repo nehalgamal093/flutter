@@ -241,6 +241,7 @@ class _NoContext implements AppContext {
   }
 }
 
+<<<<<<< HEAD
 /// Allows inserting file system exceptions into certain
 /// [MemoryFileSystem] operations by tagging path/op combinations.
 ///
@@ -268,6 +269,51 @@ class FileExceptionHandler {
     final String path = entity.path;
     _contextErrors[path] ??= <FileSystemOp, FileSystemException>{};
     _contextErrors[path]![operation] = exception;
+=======
+/// A fake implementation of a vm_service that mocks the JSON-RPC request
+/// and response structure.
+class FakeVmServiceHost {
+  FakeVmServiceHost({
+    @required List<VmServiceExpectation> requests,
+  }) : _requests = requests {
+    _vmService = vm_service.VmService(
+      _input.stream,
+      _output.add,
+    );
+    _applyStreamListen();
+    _output.stream.listen((String data) {
+      final Map<String, Object> request = json.decode(data) as Map<String, Object>;
+      if (_requests.isEmpty) {
+        throw Exception('Unexpected request: $request');
+      }
+      final FakeVmServiceRequest fakeRequest = _requests.removeAt(0) as FakeVmServiceRequest;
+      expect(request, isA<Map<String, Object>>()
+        .having((Map<String, Object> request) => request['method'], 'method', fakeRequest.method)
+        .having((Map<String, Object> request) => request['params'], 'args', fakeRequest.args)
+      );
+      if (fakeRequest.close) {
+        _vmService.dispose();
+        expect(_requests, isEmpty);
+        return;
+      }
+      if (fakeRequest.errorCode == null) {
+        _input.add(json.encode(<String, Object>{
+          'jsonrpc': '2.0',
+          'id': request['id'],
+          'result': fakeRequest.jsonResponse ?? <String, Object>{'type': 'Success'},
+        }));
+      } else {
+        _input.add(json.encode(<String, Object>{
+          'jsonrpc': '2.0',
+          'id': request['id'],
+          'error': <String, Object>{
+            'code': fakeRequest.errorCode,
+          }
+        }));
+      }
+      _applyStreamListen();
+    });
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   }
 
   void addTempError(FileSystemOp operation, FileSystemException exception) {

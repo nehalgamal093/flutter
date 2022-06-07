@@ -344,11 +344,15 @@ abstract class CreateBase extends FlutterCommand {
     String iosLanguage,
     String flutterRoot,
     String dartSdkVersionBounds,
+<<<<<<< HEAD
     String agpVersion,
     String kotlinVersion,
     String gradleVersion,
     bool withPlatformChannelPluginHook = false,
     bool withFfiPluginHook = false,
+=======
+    bool withPluginHook = false,
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     bool ios = false,
     bool android = false,
     bool web = false,
@@ -421,10 +425,13 @@ abstract class CreateBase extends FlutterCommand {
       'winuwp': windowsUwp,
       'year': DateTime.now().year,
       'dartSdkVersionBounds': dartSdkVersionBounds,
+<<<<<<< HEAD
       'implementationTests': implementationTests,
       'agpVersion': agpVersion,
       'kotlinVersion': kotlinVersion,
       'gradleVersion': gradleVersion,
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     };
   }
 

@@ -2947,7 +2947,11 @@ Iterable<DiagnosticsNode> debugTransformDebugCreator(Iterable<DiagnosticsNode> p
     if (!foundStackTrace && node is DiagnosticsStackTrace)
       foundStackTrace = true;
     if (_isDebugCreator(node)) {
+<<<<<<< HEAD
       result.addAll(_parseDiagnosticsNode(node, errorSummary));
+=======
+      yield* _parseDiagnosticsNode(node, errorSummary)!;
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     } else {
       if (foundStackTrace) {
         pending.add(node);
@@ -2963,6 +2967,7 @@ Iterable<DiagnosticsNode> debugTransformDebugCreator(Iterable<DiagnosticsNode> p
 /// Transform the input [DiagnosticsNode].
 ///
 /// Return null if input [DiagnosticsNode] is not applicable.
+<<<<<<< HEAD
 Iterable<DiagnosticsNode> _parseDiagnosticsNode(
   DiagnosticsNode node,
   ErrorSummary? errorSummary,
@@ -2985,6 +2990,17 @@ Iterable<DiagnosticsNode> _parseDiagnosticsNode(
     });
     return <DiagnosticsNode>[];
   }
+=======
+Iterable<DiagnosticsNode>? _parseDiagnosticsNode(
+  DiagnosticsNode node,
+  ErrorSummary? errorSummary,
+) {
+  if (!_isDebugCreator(node))
+    return null;
+  final DebugCreator debugCreator = node.value! as DebugCreator;
+  final Element element = debugCreator.element;
+  return _describeRelevantUserCode(element, errorSummary);
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 }
 
 Iterable<DiagnosticsNode> _describeRelevantUserCode(
@@ -3017,6 +3033,11 @@ Iterable<DiagnosticsNode> _describeRelevantUserCode(
     // TODO(chunhtai): should print out all the widgets that are about to cross
     // package boundaries.
     if (debugIsLocalCreationLocation(target)) {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
       DiagnosticsNode? devToolsDiagnostic;
 
       // TODO(kenz): once the inspector is better at dealing with broken trees,
@@ -3024,7 +3045,11 @@ Iterable<DiagnosticsNode> _describeRelevantUserCode(
       // errors. See https://github.com/flutter/flutter/issues/74918.
       if (isOverflowError()) {
         final String? devToolsInspectorUri =
+<<<<<<< HEAD
           WidgetInspectorService.instance._devToolsInspectorUriForElement(target);
+=======
+        WidgetInspectorService.instance._devToolsInspectorUriForElement(target);
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
         if (devToolsInspectorUri != null) {
           devToolsDiagnostic = DevToolsDeepLinkProperty(
             'To inspect this widget in Flutter DevTools, visit: $devToolsInspectorUri',

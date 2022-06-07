@@ -213,9 +213,16 @@ Future<Map<String, dynamic>> collect(Uri serviceUri, bool Function(String) libra
   Future<FlutterVmService> Function(Uri) connector = _defaultConnect,
   @visibleForTesting bool forceSequential = false,
 }) async {
+<<<<<<< HEAD
   final FlutterVmService vmService = await connector(serviceUri);
   final Map<String, dynamic> result = await _getAllCoverage(vmService.service, libraryPredicate, forceSequential);
   await vmService.dispose();
+=======
+  final vm_service.VmService vmService = await connector(serviceUri);
+  final Map<String, dynamic> result = await _getAllCoverage(
+      vmService, libraryPredicate);
+  vmService.dispose();
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   return result;
 }
 

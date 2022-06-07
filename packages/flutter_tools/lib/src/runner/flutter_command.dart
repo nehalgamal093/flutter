@@ -964,7 +964,11 @@ abstract class FlutterCommand extends Command<void> {
   ///
   /// Throws a [ToolExit] if the current set of options is not compatible with
   /// each other.
+<<<<<<< HEAD
   Future<BuildInfo> getBuildInfo({ BuildMode? forcedBuildMode, File? forcedTargetFile }) async {
+=======
+  Future<BuildInfo> getBuildInfo({ BuildMode forcedBuildMode, bool updateWebDefines = true }) async {
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     final bool trackWidgetCreation = argParser.options.containsKey('track-widget-creation') &&
       boolArg('track-widget-creation');
 
@@ -1092,8 +1096,13 @@ abstract class FlutterCommand extends Command<void> {
         ? stringsArg(FlutterOptions.kDartDefinesOption)
         : <String>[];
 
+<<<<<<< HEAD
     if (argParser.options.containsKey('web-renderer')) {
       dartDefines = updateDartDefines(dartDefines, stringArg('web-renderer')!);
+=======
+    if (argParser.options.containsKey('web-renderer') && updateWebDefines) {
+      dartDefines = updateDartDefines(dartDefines, stringArg('web-renderer'));
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     }
 
     return BuildInfo(buildMode,

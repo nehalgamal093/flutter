@@ -27,7 +27,11 @@ import 'package:flutter_tools/src/base/user_messages.dart';
 import 'package:flutter_tools/src/build_info.dart';
 import 'package:flutter_tools/src/cache.dart';
 import 'package:flutter_tools/src/commands/run.dart';
+<<<<<<< HEAD
 import 'package:flutter_tools/src/devfs.dart';
+=======
+import 'package:flutter_tools/src/convert.dart';
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 import 'package:flutter_tools/src/device.dart';
 import 'package:flutter_tools/src/globals.dart' as globals;
 import 'package:flutter_tools/src/project.dart';
@@ -36,7 +40,11 @@ import 'package:flutter_tools/src/resident_runner.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
 import 'package:flutter_tools/src/vmservice.dart';
 import 'package:meta/meta.dart';
+<<<<<<< HEAD
 import 'package:test/fake.dart';
+=======
+import 'package:mockito/mockito.dart';
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 import 'package:vm_service/vm_service.dart';
 
 import '../../src/common.dart';
@@ -474,6 +482,66 @@ void main() {
         FileSystem: () => fs,
         ProcessManager: () => FakeProcessManager.any(),
       });
+
+      testUsingContext('No web renderer options are added to non web device', () async {
+        final FakeApplicationPackageFactory applicationPackageFactory = ApplicationPackageFactory.instance as FakeApplicationPackageFactory;
+        final RunCommand command = RunCommand();
+        final MockDevice mockDevice = MockDevice(TargetPlatform.ios);
+        when(mockDevice.supportsRuntimeMode(any)).thenAnswer((Invocation invocation) => true);
+        when(mockDevice.isLocalEmulator).thenAnswer((Invocation invocation) => Future<bool>.value(false));
+        when(mockDevice.getLogReader(app: anyNamed('app'))).thenReturn(FakeDeviceLogReader());
+        when(mockDevice.supportsFastStart).thenReturn(true);
+        when(mockDevice.sdkNameAndVersion).thenAnswer((Invocation invocation) => Future<String>.value('iOS 13'));
+        applicationPackageFactory.package = PrebuiltIOSApp(projectBundleId: 'test');
+
+        DebuggingOptions debuggingOptions;
+
+        when(mockDevice.startApp(
+          any,
+          mainPath: anyNamed('mainPath'),
+          debuggingOptions: anyNamed('debuggingOptions'),
+          platformArgs: anyNamed('platformArgs'),
+          route: anyNamed('route'),
+          prebuiltApplication: anyNamed('prebuiltApplication'),
+          ipv6: anyNamed('ipv6'),
+          userIdentifier: anyNamed('userIdentifier'),
+        )).thenAnswer((Invocation invocation) {
+          debuggingOptions = invocation.namedArguments[#debuggingOptions] as DebuggingOptions;
+          return Future<LaunchResult>.value(LaunchResult.failed());
+        });
+
+        when(mockDeviceManager.getDevices()).thenAnswer(
+          (Invocation invocation) => Future<List<Device>>.value(<Device>[mockDevice])
+        );
+
+        when(mockDeviceManager.findTargetDevices(any, timeout: anyNamed('timeout'))).thenAnswer(
+          (Invocation invocation) => Future<List<Device>>.value(<Device>[mockDevice])
+        );
+
+        final Directory tempDir = globals.fs.systemTempDirectory.createTempSync('flutter_run_test.');
+        tempDir.childDirectory('ios').childFile('AppDelegate.swift').createSync(recursive: true);
+        tempDir.childFile('.dart_tool/package_config')
+          ..createSync(recursive: true)
+          ..writeAsStringSync(json.encode(<String, Object>{'configVersion': 2, 'packages': <Object>[]}));
+        tempDir.childDirectory('lib').childFile('main.dart').createSync(recursive: true);
+        tempDir.childFile('pubspec.yaml').writeAsStringSync('name: test');
+        globals.fs.currentDirectory = tempDir;
+
+        await expectToolExitLater(createTestCommandRunner(command).run(<String>[
+          'run',
+          '--no-pub',
+          '--no-hot',
+        ]), isNull);
+        // No web renderer options are added.
+        expect(debuggingOptions.buildInfo.dartDefines, isEmpty);
+      }, overrides: <Type, Generator>{
+        Artifacts: () => artifacts,
+        Cache: () => mockCache,
+        DeviceManager: () => mockDeviceManager,
+        FileSystem: () => fs,
+        ProcessManager: () => mockProcessManager,
+        ApplicationPackageFactory: () => FakeApplicationPackageFactory(),
+      });
     });
 
     testUsingContext('should only request artifacts corresponding to connected devices', () async {
@@ -569,10 +637,13 @@ void main() {
       'run',
       '--no-pub',
     ]), contains('Lost connection to device.'));
+<<<<<<< HEAD
   }, overrides: <Type, Generator>{
     Cache: () => Cache.test(processManager: FakeProcessManager.any()),
     FileSystem: () => MemoryFileSystem.test(),
     ProcessManager: () => FakeProcessManager.any(),
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   });
 
   testUsingContext('Flutter run does not catch other RPC errors', () async {
@@ -585,6 +656,7 @@ void main() {
       'run',
       '--no-pub',
     ]), throwsA(isA<RPCError>()));
+<<<<<<< HEAD
   }, overrides: <Type, Generator>{
     Cache: () => Cache.test(processManager: FakeProcessManager.any()),
     FileSystem: () => MemoryFileSystem.test(),
@@ -661,6 +733,8 @@ void main() {
   }, overrides: <Type, Generator>{
     ProcessManager: () => FakeProcessManager.any(),
     Logger: () => BufferLogger.test(),
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   });
 }
 
@@ -734,9 +808,12 @@ class FakeDevice extends Fake implements Device {
   bool supportsRuntimeMode(BuildMode mode) => true;
 
   @override
+<<<<<<< HEAD
   Future<bool> get supportsHardwareRendering async => true;
 
   @override
+=======
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   bool supportsHotReload = false;
 
   @override
@@ -821,6 +898,22 @@ class FakeDevice extends Fake implements Device {
   }
 }
 
+<<<<<<< HEAD
+=======
+class FakeApplicationPackageFactory extends Fake implements ApplicationPackageFactory {
+  ApplicationPackage package;
+
+  @override
+  Future<ApplicationPackage> getPackageForPlatform(
+    TargetPlatform platform, {
+    BuildInfo buildInfo,
+    File applicationBinary,
+  }) async {
+    return package;
+  }
+}
+
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
 class TestRunCommandWithFakeResidentRunner extends RunCommand {
   FakeResidentRunner fakeResidentRunner;
 

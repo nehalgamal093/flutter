@@ -154,9 +154,16 @@ function upgrade_flutter () (
     fi
     pub_upgrade_with_retry
 
+<<<<<<< HEAD
     # Compile...
     "$DART" --verbosity=error --disable-dart-dev $FLUTTER_TOOL_ARGS --snapshot="$SNAPSHOT_PATH" --packages="$FLUTTER_TOOLS_DIR/.packages" --no-enable-mirrors "$SCRIPT_PATH"
     echo "$compilekey" > "$STAMP_PATH"
+=======
+    retry_upgrade
+
+    "$DART" --verbosity=error --disable-dart-dev $FLUTTER_TOOL_ARGS --snapshot="$SNAPSHOT_PATH" --packages="$FLUTTER_TOOLS_DIR/.packages" --no-enable-mirrors "$SCRIPT_PATH"
+    echo "$revision" > "$STAMP_PATH"
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   fi
   # The exit here is extraneous since the function is run in a subshell, but
   # this serves as documentation that running the function in a subshell is

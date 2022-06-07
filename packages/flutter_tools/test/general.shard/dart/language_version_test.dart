@@ -278,7 +278,11 @@ library funstuff;
     expect(determineLanguageVersion(file, package, flutterRoot), LanguageVersion(2, 7));
   });
 
+<<<<<<< HEAD
   testWithoutContext('defaults to current version if package lookup returns null', () {
+=======
+  testWithoutContext('defaults to null safe version if package lookup returns null', () {
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
     final FileSystem fileSystem = MemoryFileSystem.test();
     final File file = fileSystem.file('example.dart')
       ..writeAsStringSync('''
@@ -287,9 +291,16 @@ library funstuff;
     final Package package = Package(
       'foo',
       Uri.parse('file://foo/'),
+<<<<<<< HEAD
     );
 
     expect(determineLanguageVersion(file, package, flutterRoot), testCurrentLanguageVersion);
+=======
+      languageVersion: null,
+    );
+
+    expect(determineLanguageVersion(file, package), LanguageVersion(2, 12));
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe
   });
 
   testWithoutContext('Returns null safe error if reading the file throws a FileSystemException', () {

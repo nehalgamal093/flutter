@@ -185,6 +185,7 @@ class CodesignCommand extends Command<void> {
       'artifacts/engine/darwin-x64-release/FlutterMacOS.framework/Versions/A/FlutterMacOS',
       'artifacts/engine/darwin-x64/FlutterMacOS.framework/Versions/A/FlutterMacOS',
       'artifacts/engine/darwin-x64/font-subset',
+<<<<<<< HEAD:dev/conductor/core/lib/src/codesign.dart
       'artifacts/engine/ios-profile/Flutter.xcframework/ios-arm64_armv7/Flutter.framework/Flutter',
       'artifacts/engine/ios-profile/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Flutter',
       'artifacts/engine/ios-release/Flutter.xcframework/ios-arm64_armv7/Flutter.framework/Flutter',
@@ -196,6 +197,16 @@ class CodesignCommand extends Command<void> {
         .map((String relativePath) =>
             fileSystem.path.join(frameworkCacheDirectory, relativePath))
         .toList();
+=======
+      'artifacts/engine/ios-profile/Flutter.xcframework/ios-armv7_arm64/Flutter.framework/Flutter',
+      'artifacts/engine/ios-profile/Flutter.xcframework/ios-x86_64-simulator/Flutter.framework/Flutter',
+      'artifacts/engine/ios-release/Flutter.xcframework/ios-armv7_arm64/Flutter.framework/Flutter',
+      'artifacts/engine/ios-release/Flutter.xcframework/ios-x86_64-simulator/Flutter.framework/Flutter',
+      'artifacts/engine/ios/Flutter.xcframework/ios-armv7_arm64/Flutter.framework/Flutter',
+      'artifacts/engine/ios/Flutter.xcframework/ios-x86_64-simulator/Flutter.framework/Flutter',
+      'artifacts/ios-deploy/ios-deploy',
+    ].map((String relativePath) => fileSystem.path.join(framework.cacheDirectory, relativePath)).toList();
+>>>>>>> 6092606539d16e3889e79cf66b15bc06a5ae05fe:dev/tools/lib/codesign.dart
   }
 
   /// Verify the existence of all expected binaries in cache.
